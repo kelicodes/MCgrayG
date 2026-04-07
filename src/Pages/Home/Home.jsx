@@ -5,6 +5,7 @@ import ProductCard, { ProductCardDemo } from '../../Component/Card/Card'
 import McGrayBanner from '../../Component/Hero/Hero'
 import { Footer } from "../../Component/Footer/Footer"
 import { Services } from '../../Component/Services/Services'
+import { HowItWorks } from '../../Component/Say/Say'
 
 function Home() {
 
@@ -14,7 +15,7 @@ function Home() {
  
     <Services/>
     <ProductCardDemo/>
-  
+    <HowItWorks/>
     </>
   )
 }

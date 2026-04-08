@@ -1,0 +1,123 @@
+.subscription {
+  background: var(--bg-base);
+}
+
+/* ── HERO ── */
+.subscription__hero {
+  max-width: 600px;
+  margin: 0 auto var(--space-12);
+}
+
+.subscription__hero h1 {
+  margin-bottom: var(--space-4);
+}
+
+.subscription__hero p {
+  color: var(--fg-secondary);
+  margin-bottom: var(--space-4);
+}
+
+/* OFFER BADGE */
+.subscription__offer {
+  background: var(--green-100);
+  color: var(--green-700);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* ── GRID ── */
+.subscription__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-8);
+}
+
+/* ── CARD ── */
+.subscription__card {
+  padding: var(--space-8);
+  text-align: center;
+  position: relative;
+}
+
+/* FEATURED CARD */
+.subscription__card--featured {
+  border: 2px solid var(--brand-primary);
+  box-shadow: var(--shadow-md), var(--glow-green);
+  transform: scale(1.04);
+}
+
+/* BADGE POSITION */
+.subscription__card .badge {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+}
+
+/* PRICE */
+.subscription__price {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--fg-primary);
+  margin: var(--space-4) 0;
+}
+
+/* DESCRIPTION */
+.subscription__desc {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  margin-bottom: var(--space-4);
+}
+
+/* FEATURES LIST */
+.subscription__card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--space-6);
+}
+
+.subscription__card ul li {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+}
+
+/* ── WHY SECTION ── */
+.subscription__why {
+  margin-top: var(--space-20);
+}
+
+.subscription__why h2 {
+  margin-bottom: var(--space-6);
+}
+
+/* BENEFITS GRID */
+.subscription__benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+/* BENEFIT ITEM */
+.subscription__benefits div {
+  background: var(--bg-elevated);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ── HOVER IMPROVEMENT ── */
+.subscription__card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .subscription__card--featured {
+    transform: scale(1); /* prevent breaking layout on mobile */
+  }
+}

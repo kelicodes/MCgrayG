@@ -1,6 +1,8 @@
 import "./Services.css";
+import { useNavigate } from "react-router-dom";
 
 export const Services = () => {
+  const navigate=useNavigate()
   return (
     <section className="services section">
       <div className="container">
@@ -39,7 +41,7 @@ export const Services = () => {
           </div>
 
           {/* SUBSCRIPTIONS (FEATURED) */}
-          <div className="services__card services__card--featured card">
+          <div onClick={()=>navigate("/sub")} className="services__card services__card--featured card">
             <span className="badge badge--green">Most Popular</span>
 
             <h3>Subscriptions</h3>

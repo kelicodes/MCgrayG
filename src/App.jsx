@@ -10,11 +10,13 @@ import { SubscriptionPage } from './Pages/Sub/Sub'
 import Checkout from './Pages/Check/Check'
 import Login from './Pages/Login/Login'
 import ScrollToTop from './Component/Scroll/Scroll'
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
 
   return (
     <>
+    <ToastContainer/>
     <Navbar/>
     <ScrollToTop/>
     <Routes>

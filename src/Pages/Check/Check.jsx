@@ -1,9 +1,15 @@
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { AuthContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 import "./Check.css"
+
 const Checkout = () => {
   const { state: plan } = useLocation();
+  const {token}=useContext(AuthContext)
+  const navigate=useNavigate()
 
   const [form, setForm] = useState({
     name: "",
@@ -16,27 +22,62 @@ const Checkout = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      await axios.post("https://mcgray.onrender.com/sub", {
-        ...form,
-        plan,
-      });
+  if (!token) {
+    toast.error(
+      "To make a subscription, you must register as a user. Our team will contact you for deliveries and follow-up.",
+      { position: "top-center" }
+    );
+    navigate("/login");
+    return;
+  }
 
-      alert("Subscription successful!");
-    } catch (err) {
-      console.error(err);
-      alert("Error submitting form");
-    }
-  };
+  try {
+    const res = await axios.post("https://mcgray.onrender.com/sub", {
+      ...form,
+      plan,
+    });
+
+    console.log(res);
+
+    // Clear the form
+    setForm({
+      name: "",
+      phone: "",
+      location: "",
+    });
+
+    // Show success toast
+    toast.success(res.data.message || "Order created successfully!", {
+      position: "top-center",
+      style: {
+        background: "var(--green-500)",
+        color: "var(--fg-inverse)",
+        fontWeight: "600",
+        fontFamily: "var(--font-body)",
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    toast.error("Error submitting form", {
+      position: "top-center",
+      style: {
+        background: "var(--orange-400)",
+        color: "var(--fg-inverse)",
+        fontWeight: "600",
+        fontFamily: "var(--font-body)",
+      },
+    });
+  }
+};
 
   return (
    <div className="checkout">
   <div className="checkout__card">
 
     <div className="checkout__header">
-      <h2 className="checkout__title">Complete Your Order</h2>
+      <h2 className="checkout__title">Confirm Your Subscription.</h2>
       <p className="checkout__subtitle">
         You're one step away from fresh juice delivery 🧃
       </p>
@@ -57,6 +98,7 @@ const Checkout = () => {
           className="checkout__input"
           type="text"
           name="name"
+           value={form.name}
           onChange={handleChange}
           required
         />
@@ -68,6 +110,7 @@ const Checkout = () => {
           className="checkout__input"
           type="text"
           name="phone"
+           value={form.phone}
           onChange={handleChange}
           required
         />
@@ -79,6 +122,7 @@ const Checkout = () => {
           className="checkout__input"
           type="text"
           name="location"
+           value={form.location}
           onChange={handleChange}
           required
         />

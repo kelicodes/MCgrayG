@@ -32,7 +32,8 @@ function Home() {
   return (
     <>
       {/* your sections */}
-      <McGrayBanner />
+      <McGrayHero/>
+      
       <Services />
       <ProductCardDemo />
       <SubscriptionPage />

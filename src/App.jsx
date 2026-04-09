@@ -3,7 +3,7 @@ import Navbar from './Component/Navbar/Navbar'
 import './App.css'
 
 import { Footer } from './Component/Footer/Footer'
-import { Routes,Route } from 'react-router-dom'
+import { Routes,Route, useLocation } from 'react-router-dom'
 
 import Home from './Pages/Home/Home'
 import { SubscriptionPage } from './Pages/Sub/Sub'
@@ -15,11 +15,17 @@ import "react-toastify/dist/ReactToastify.css";
 import SubscriptionSuccess from './Pages/Mysub/Mysub'
 import { ProductCardDemo } from './Component/Card/Card'
 function App() {
+    const location = useLocation
 
+  // Pages where we don't want navbar/footer
+  const noNavFooter = ['/login',];
+
+  const hideNavFooter = noNavFooter.includes(location.pathname);
   return (
+
     <>
     <ToastContainer/>
-    <Navbar/>
+   {!hideNavFooter && <Navbar />}
     <ScrollToTop/>
     <Routes>
   <Route path='/' element={<Home/>}/>
@@ -30,8 +36,7 @@ function App() {
   <Route path='/menu' element={<ProductCardDemo/>}/>
    </Routes>
 
-
-      <Footer/>
+{!hideNavFooter && <Footer />}
     </>
   )
 }

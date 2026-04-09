@@ -196,7 +196,7 @@ export default function Navbar({
               onClick={handleOrderClick}
               role="button"
             >
-              Order Now
+              Subscribe 
             </a>
 
             {/* Hamburger */}

@@ -7,6 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { SiNamecheap } from "react-icons/si";
 import { AuthContext } from "../../Context/AuthContext"
 import "./Login.css";
+import API from "../../Component/MyApi/Myapi";
 
 // Spinner component for button loading state
 const Spinner = () => (
@@ -33,13 +34,13 @@ const Login = () => {
       let response;
 
       if (logstate === "signup") {
-        response = await axios.post(
-          "https://mcgray.onrender.com/reg/userReg",
+        response = await API.post(
+          "/reg/userReg",
           { name, email, password }
         );
       } else {
-        response = await axios.post(
-          "https://mcgray.onrender.com/reg",
+        response = await API.post(
+          "/reg",
           { email, password }
         );
       }

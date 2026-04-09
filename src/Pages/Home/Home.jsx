@@ -33,9 +33,9 @@ function Home() {
     <>
       {/* your sections */}
       <McGrayBanner />
-      <SubscriptionPage />
       <Services />
       <ProductCardDemo />
+      <SubscriptionPage />
       <HowItWorks />
 
       {/* WhatsApp Button */}

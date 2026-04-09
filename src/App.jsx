@@ -12,6 +12,8 @@ import Login from './Pages/Login/Login'
 import ScrollToTop from './Component/Scroll/Scroll'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SubscriptionSuccess from './Pages/Mysub/Mysub'
+import { ProductCardDemo } from './Component/Card/Card'
 function App() {
 
   return (
@@ -24,6 +26,8 @@ function App() {
   <Route path='/sub' element={<SubscriptionPage/>}/>
   <Route path='/check' element={<Checkout/>}/>
   <Route path='/login' element={<Login/>}/>
+  <Route path='/mysub' element={<SubscriptionSuccess/>}/>
+  <Route path='/menu' element={<ProductCardDemo/>}/>
    </Routes>
 
 

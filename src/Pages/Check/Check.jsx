@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import "./Check.css"
+import API from "../../Component/MyApi/Myapi";
 
 const Checkout = () => {
   const { state: plan } = useLocation();
@@ -26,7 +27,7 @@ const Checkout = () => {
 
   if (!token) {
     toast.error(
-      "To make a subscription, you must register as a user. Our team will contact you for deliveries and follow-up.",
+      "To make a subscription, you must register as a user.",
       { position: "top-center" }
     );
     navigate("/login");
@@ -34,40 +35,37 @@ const Checkout = () => {
   }
 
   try {
-    const res = await axios.post("https://mcgray.onrender.com/sub", {
+    const payload = {
       ...form,
-      plan,
-    });
+      planName: plan.name,
+       planPrice: Number(plan.price.replace(/,/g, "")),
+      planPeriod: plan.period,
+    };
+
+     console.log("PLAN:", plan);
+console.log("PAYLOAD:", payload);
+
+    const res = await API.post("/sub", payload);
 
     console.log(res);
 
-    // Clear the form
     setForm({
       name: "",
       phone: "",
       location: "",
     });
 
-    // Show success toast
     toast.success(res.data.message || "Order created successfully!", {
       position: "top-center",
-      style: {
-        background: "var(--green-500)",
-        color: "var(--fg-inverse)",
-        fontWeight: "600",
-        fontFamily: "var(--font-body)",
-      },
     });
+
+    // 🔥 REDIRECT WITH ORDER ID
+    navigate(`/mysub`);
+
   } catch (err) {
     console.error(err);
     toast.error("Error submitting form", {
       position: "top-center",
-      style: {
-        background: "var(--orange-400)",
-        color: "var(--fg-inverse)",
-        fontWeight: "600",
-        fontFamily: "var(--font-body)",
-      },
     });
   }
 };
@@ -129,7 +127,7 @@ const Checkout = () => {
       </div>
 
       <button className="btn btn--primary btn--lg checkout__btn">
-        Confirm Order →
+        Confirm Subscription. →
       </button>
     </form>
 
